@@ -1,0 +1,64 @@
+\subsection{T-Type Ca$^{2+}$ Channels}
+
+\textbf{Activation mechanism and kinetics}
+T-type Ca$^{2+}$ channels are low-voltage-activated, transient calcium channels
+that open in response to modest depolarizations. They are recruited following
+mechanosensitive channel activation and provide additional Ca$^{2+}$ influx,
+amplifying subthreshold depolarizations \cite{huguenardSimulationCurrentsInvolved1992}.
+
+\textbf{Physiological role}
+These channels act as amplifiers of subthreshold depolarizations initiated by
+mechanosensitive currents. They contribute to intracellular Ca$^{2+}$ dynamics,
+which can further activate Ca$^{2+}$-dependent channels such as TRPM4 and
+K-Ca channels.
+
+
+\textbf{Modeling formulation}  
+The T-type Ca$^{2+}$ current is modeled as:
+\[
+I_{\mathrm{T}} = g_T \, a_T(V_m)^2 \, b_T(V_m) \, (V_m - E_{\mathrm{T}})
+\]
+where, $I_{\mathrm{T}}$ is the T-type Ca$^{2+}$ current (A/m$^2$), $g_T$ is the maximal channel conductance. $a_T(V_m)$ is the steady-state activation probability:
+    \[
+        a_T(V_m) = \frac{1}{1 + \exp(-(V_m - V_{1/2, \mathrm{act}})/k_\mathrm{act})}.
+    \]
+$b_T(V_m)$ is the steady-state inactivation probability:
+    \[
+        b_T(V_m) = \frac{1}{1 + \exp((V_m - V_{1/2, \mathrm{inact}})/k_\mathrm{inact})}.
+    \]
+$E_{\mathrm{T}}$ is the reversal potential for T-type channels (mV), corresponding to the Nernst potential for Ca$^{2+}$ (mV).
+
+\textbf{Parameter justification}
+\begin{itemize}
+    \item The steady-state activation parameters of the T-type Ca$^{2+}$ current,
+    with a half-activation voltage $V_{1/2, \mathrm{act}} = -57$~mV and slope factor of $k_\mathrm{act} = 5.6$~mV,
+    were taken from Huguenard and McCormick (1992) \cite{huguenardSimulationCurrentsInvolved1992},
+    consistent with experimentally measured low-threshold Ca$^{2+}$ channel
+    activation in thalamic and other central neurons.
+
+    \item The steady-state inactivation parameters, with a half-inactivation
+    voltage $V_{1/2, \mathrm{inact}} = -80$~mV and slope factor of $k_\mathrm{inact} = 4.0$~mV, reproduce the rapid
+    voltage-dependent inactivation characteristic of T-type Ca$^{2+}$ channels,
+    as reported experimentally and implemented in \cite{huguenardSimulationCurrentsInvolved1992}.
+
+    \item Single-channel recordings under physiological ionic conditions report
+    a unitary conductance in the range of approximately 5–9~pS for T-type
+    Ca$^{2+}$ channels, which was used to guide the choice of maximal conductance
+    in the model \cite{huguenardSimulationCurrentsInvolved1992}.
+
+    \item All T-type Ca$^{2+}$ current was included in the intracellular Ca$^{2+}$
+    dynamics, as these channels are highly Ca$^{2+}$ selective and represent a
+    major source of activity-dependent Ca$^{2+}$ influx. This modeling assumption
+    follows the approach of Huguenard and McCormick (1992), where Ca$^{2+}$ entry
+    through T-type channels directly contributes to intracellular Ca$^{2+}$
+    accumulation and downstream Ca$^{2+}$-dependent processes. \cite{huguenardSimulationCurrentsInvolved1992}
+\end{itemize}
+
+
+\textbf{Activation and inactivation kinetics}
+T-type channels activate rapidly upon depolarization and inactivate over tens of milliseconds,
+providing transient Ca$^{2+}$ influx. Due to their fast kinetics relative to slower
+mechanosensitive currents, explicit gating variables can be omitted in some
+simplified models, but in this implementation, steady-state activation and
+inactivation probabilities ($a_T$, $b_T$) are used to capture the transient response
+accurately.

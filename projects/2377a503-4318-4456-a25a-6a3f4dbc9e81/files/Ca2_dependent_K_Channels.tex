@@ -1,0 +1,28 @@
+\subsection{Ca$^{2+}$-Activated K Channels and Repolarization}
+
+Sustained Ca$^{2+}$ entry through Piezo, TRP, and T-type channels necessitates
+negative feedback mechanisms to restore the resting membrane potential.
+Ca$^{2+}$-activated K$^+$ channels provide this stabilizing outward current \cite{leindersCa2DependenceSmall1992}.
+
+\textbf{Modeled current}
+\[
+I_{\mathrm{KCa}} = g_{\mathrm{KCa}}
+\frac{[\mathrm{Ca}]^n}{[\mathrm{Ca}]^n + K_d^n}
+(V_m - E_K),
+\]
+where the reversal potential is equal to the Potassium Nernst equilibrium potential and \(n = 10\). 
+\(K_\mathrm{d}\) for SK channels was found to be 1 $\mu$M of Ca$^{2+}$ \cite{leindersCa2DependenceSmall1992}. Including \(I_{\mathrm{KCa}}\) was essential to prevent pathological depolarization and to recover the physiological resting potential in long simulations.
+
+\subsection{Modeled M-type K$^+$ current with Ca$^{2+}$-dependent modulation}
+
+\textbf{Modeling formulation}  
+The M-type potassium current was modeled as a slowly activating, non-inactivating outward K$^+$ current that stabilizes the membrane potential and opposes repetitive firing, with Ca$^{2+}$-dependent modulation of its maximal conductance:
+\[
+I_{\mathrm{M}} = g_{\mathrm{M,eff}} \, p \, (V_m - E_K), 
+\qquad 
+g_{\mathrm{M,eff}} = g_{\mathrm{M,bar}} \left(1 - 0.732 \frac{1}{1 + (K_{d,\mathrm{M}}/[\mathrm{Ca}])^n} \right).
+\]
+Here, \(I_{\mathrm{M}}\) is the M-type K$^+$ current, \(g_{\mathrm{M,bar}}\) is the maximal M-channel conductance per unit membrane area (S\,m$^{-2}$), \(p\) is the voltage-dependent activation variable of the M current, \(V_m\) is the membrane potential, \(E_K\) is the potassium reversal potential, \([\mathrm{Ca}]\) denotes intracellular calcium concentration (\(\mu\)M), \(K_{d,\mathrm{M}}\) is the half-inhibition constant, and \(n\) is the Hill coefficient describing Ca$^{2+}$-dependent suppression of M-channel conductance.
+
+M-type K$^+$ channels (Kv7/KCNQ) are concentrated in the perisomatic region of CA1 pyramidal neurons (but also in cortical neurons), where they regulate synaptic integration, resting membrane potential, and action potential initiation \cite{huMChannelsKv7KCNQ2007}. The effective conductance \(g_{\mathrm{M,eff}}\) decreases as intracellular Ca$^{2+}$ rises, reflecting Ca$^{2+}$/calmodulin-mediated inhibition of Kv7 channels. Experimental measurements show that intracellular Ca$^{2+}$ suppresses KCNQ2/3 currents with a half-maximal inhibition (IC$_{50}$) of approximately 70 nM cite{gamperCalmodulinMediatesCa2+dependent2003}, which was adopted as \(K_{d,\mathrm{M}}\) in the model. The data were fit by a Hill equation with an IC$_{50}$ of 70 nM, a saturating inhibition of 0.732, and a Hill coefficient \(n = 2\) \cite{gamperCalmodulinMediatesCa2+dependent2003}. This Ca$^{2+}$-dependent modulation operates on timescales of tens to hundreds of milliseconds, reflecting Ca$^{2+}$ accumulation and Ca$^{2+}$/calmodulin-mediated regulation of Kv7 channels. It also allows depolarizing currents, such as those carried by Piezo or TRP channels, to transiently overcome stabilizing M-current and enhance excitability. By incorporating this mechanism, the model captures the dynamic interplay between intracellular Ca$^{2+}$ elevations and outward K$^+$ conductances during mechanosensitive or synaptic stimulation. 
+The unitary conductance was found to be 10~pS \cite{huMChannelsKv7KCNQ2007}.

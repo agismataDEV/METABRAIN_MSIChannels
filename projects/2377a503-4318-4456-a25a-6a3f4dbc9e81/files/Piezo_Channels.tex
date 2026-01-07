@@ -1,0 +1,48 @@
+\subsection{Piezo1/2 Channels}
+
+\textbf{Activation mechanism and kinetics}
+Piezo1/2 are large trimeric mechanosensitive channels that respond
+directly to membrane tension and curvature. Increased tension flattens the
+intrinsic dome-shaped structure of the channel, lowering the energetic barrier
+to opening \cite{costePiezo1Piezo2Are2010,wuTouchTensionTransduction2017}.
+
+Activation is extremely fast, occurring within $\sim 0.1$--$2$ ms after tension
+application. Piezo1 channels exhibit pronounced inactivation, with time constants
+ranging from $\sim 7$ to $50$ ms depending on isoform, membrane composition, and
+ionic conditions \cite{costePiezo1Piezo2Are2010, wuTouchTensionTransduction2017, coxRemovalMechanoprotectiveInfluence2016}. Piezo2 excibit faster inactivation \cite{wuTouchTensionTransduction2017}. Following inactivation, channel
+availability is restored on slower timescales once tension is relieved.
+
+\textbf{Physiological role}
+The Piezo current is a rapidly activating, mechanosensitive, non-selective cation current that mediates Na$^+$ and Ca$^{2+}$ influx in response to membrane tension. C When membrane tension falls below the activation threshold, Piezo channels rapidly deactivate, terminating inward cation flux. Activation of Piezo channels drives the membrane potential toward $E_{\mathrm{Piezo}}$, producing a strong depolarizing current that initiates intracellular Ca$^{2+}$ signaling and downstream mechanotransductive responses during ultrasound exposure.
+
+\textbf{Ions conducted}
+Nonselective cation current dominated by Na$^+$, with significant Ca$^{2+}$
+permeability.
+
+\textbf{Modeling formulation}  
+Based on the activation/inactivation times the current due to Piezo channels can be modeled as 
+\[
+I_{\mathrm{Piezo}} = g_{\mathrm{Piezo}} \, P_0(t) \, a^2 h \, (V_m - E_{\mathrm{Piezo}})
+\]
+where $I_{\mathrm{Piezo}}$ denotes the current carried by mechanosensitive Piezo channels (Piezo1 and Piezo2). $g_{\mathrm{Piezo}}$ is the maximal Piezo conductance per unit membrane area (S\,m$^{-2}$). $P_0(t)$ is the time-dependent open probability determined by membrane tension arising from ultrasound-induced membrane deformation. The variables $a$ and $h$ represent the activation and inactivation gating variables, respectively, with $a^2$ accounting for cooperative activation of the Piezo channel subunits. $V_m$ is the membrane potential (mV), and $E_{\mathrm{Piezo}}$ is the effective reversal potential of Piezo channels (mV). 
+
+The activation and inactivation of Piezo channels are modeled using first-order kinetics:
+\[
+\frac{d a_{\mathrm{Pz}}}{dt} = \frac{P_0(t) - a_{\mathrm{Pz}}}{\tau_{a, \mathrm{Piezo}}}, \quad
+\frac{d h_{\mathrm{Pz}}}{dt} = \frac{1 - h_{\mathrm{Pz}}}{\tau_{h, \mathrm{Piezo}}}
+\]
+where $\tau_{a, \mathrm{Piezo}} $ is the activation time constant in ms and $\tau_{h, \mathrm{Piezo}} $ is the inactivation time constant in ms (representing recovery to fully available state).
+
+\textbf{Parameter justification}
+In this model, $E_{\mathrm{Piezo}}$ was set to $0$~mV, reflecting their non-selective cation permeability. Piezo channels are nonselective cation channels permeable to Na$^+$, K$^+$, and Ca$^{2+}$ and exhibit a near-linear current--voltage relationship with reversal potentials close to 0~mV
+\cite{costePiezo1Piezo2Are2010, wuTouchTensionTransduction2017, shinPiezo2IonChannel2019}. 
+ 
+The open probability is computed from Eq.~\ref{eq:MSC_Prob} and Cox et al. \cite{coxRemovalMechanoprotectiveInfluence2016} found that $T_{1/2}$ is 4.5 - 5 mN/m , while the change in area is 8 - 15 nm$^2$. Wu et al. \cite{wuTouchTensionTransduction2017} found that $T_{1/2}$ is 1.4 mN/m , while the change in area is 6 - 20 nm$^2$.
+
+Unitary conductances were found to be 22~pS and 28~pS~\cite{shinPiezo2IonChannel2019} for Piezo1 and Piezo2, respectively.
+The channel density was found to be 1-2 channels/ $\mu$m$^2$ \cite{lewisPiezo1IonChannels2024}.
+
+A small fraction of the Piezo current is assumed to contribute to intracellular Ca$^{2+}$ influx, specifically 5–10\% of the total current, to account for the Ca$^{2+}$ permeability of Piezo channels observed experimentally \cite{gnanasambandamIonicSelectivityPermeation2015}. Single-channel recordings of human Piezo1 demonstrate that the channel is non-selective among cations, with a relative permeability sequence for monovalent ions of K$^+ > $Cs$^+ \approx$ Na$^+ >$ Li$^+$ (1.0 : 0.88 : 0.82 : 0.71) and corresponding unitary conductances at negative potentials of approximately 47, 39, 36, and 23 pS, respectively. Divalent ions such as Ca$^{2+}$, Ba$^{2+}$, and Mg$^{2+}$ also permeate the channel, though with smaller unitary conductances (~15 pS for Ca$^{2+}$, 25 pS for Ba$^{2+}$, and 10 pS for Mg$^{2+}$), reflecting slower permeation relative to monovalents.
+
+\cite{Expression}
+Piezo channels are broadly expressed in the nervous system, with Piezo1 found in various central and peripheral neurons as well as glial cells, and Piezo2 predominantly in sensory neurons, including dorsal root ganglion (DRG) and trigeminal neurons. Both channels are localized to mechanosensitive sites where they mediate rapid cation influx in response to membrane tension, and their expression patterns allow them to contribute to touch, proprioception, and other mechanosensory processes.

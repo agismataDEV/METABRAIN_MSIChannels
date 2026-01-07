@@ -1,0 +1,40 @@
+\subsection{K2P Potassium Channels (TRAAK, TREK-1, TREK-2)}
+
+Two-pore-domain potassium (K2P) channels are among the best-characterized
+force-from-lipid mechanosensitive channels that contribute to action potential propagation, sensory transduction, and muscle contraction. Structural and functional studies demonstrate that TRAAK, TREK-1, and TREK-2 open in response to increased in-plane membrane tension without requiring auxiliary proteins or cytoskeletal coupling \cite{brohawnMechanosensitivityMediatedDirectly2014,sorumUltrasoundActivatesMechanosensitive2021, sorumTensionActivationMechanosensitive2024}.
+
+\textbf{Activation mechanism and kinetics}
+K2P channels such as TRAAK, TREK-1, and TREK-2 are activated directly by membrane
+tension via a force-from-lipid mechanism. Channel opening occurs when increased
+in-plane membrane tension stabilizes the open conformation by expanding the
+effective gate area embedded in the lipid bilayer. Their gating is regulated by mechanical perturbation of the cell membrane as well as polyunsaturated fatty acids, other lipids, and temperature. \cite{brohawnMechanosensitivityMediatedDirectly2014}
+
+Activation is rapid, occurring on sub-millisecond to millisecond timescales
+($\sim 0.1$--$1$ ms) following the onset of membrane stretch. Importantly, K2P
+channels do not exhibit intrinsic inactivation on physiological timescales.
+Instead, deactivation occurs promptly when membrane tension falls below the
+activation threshold, with closure times comparable to activation times
+\cite{sorumUltrasoundActivatesMechanosensitive2021}. A consequence of the rapid ultrasonic activation of TRAAK is that even brief stimulation can activate large currents: 0.15~ms and 0.8~ms stimulation result in approximately 50\% and 95\% of the maximal TRAAK current, respectively~\cite{sorumUltrasoundActivatesMechanosensitive2021}.
+
+\textbf{Physiological role}
+The K2P current is a fast, non-inactivating, mechanosensitive outward K$^+$ current directly controlled by membrane tension. Upon activation, K2P channels drive the membrane potential toward $E_K$, thereby stabilizing and repolarizing the membrane and providing rapid negative feedback during ultrasound-induced depolarization.
+
+\textbf{Ions conducted}
+Primarily K$^+$.
+
+\textbf{Modeling formulation}  
+\[
+I_{\mathrm{K2P}} = g_{\mathrm{K2P}} \, P_0(t) \, (V_m - E_K2P)
+\]
+where, $I_{\mathrm{K2P}}$ is the current carried by mechanosensitive two-pore-domain potassium (K2P) channels (e.g., TRAAK, TREK-1, TREK-2). $g_{\mathrm{K2P}}$ is the maximal K2P conductance per unit membrane area (S\,m$^{-2}$). $P_0(t)$ is the time-dependent open probability of the channel, determined by membrane tension induced by ultrasound-driven deformation. $V_m$ is the membrane potential (mV) and $E_K2P$ is the reversal potential. 
+
+\textbf{Parameter justification}
+Values for these parameters were chosen based on previous research studies.
+$E_K2P$ was given a value of equal to the reversal potential of the Potassium reversal (Nernst) potential (mV). Sorum et al. \cite{sorumUltrasoundActivatesMechanosensitive2021} mention a reverse potential close to $E_{K^+}$, with a value ~ -75 mV for TRAAK. Patel et al. \cite{patelMammalianTwoPore1998} mention a reversal potential at the predicted value of K+ equillibrium potential at -83 mV. It is assumed in our study that it is equal to the Potassium Nerst potential.
+
+The open probability is computed from Eq.~\ref{eq:MSC_Prob} and Sorum et al. \cite{sorumTensionActivationMechanosensitive2024} found that $T_{1/2}$ is 4.4 mN/m , 6.4 mN/m and 5.8 mN/m and the slope is 1.7, 2.3 and 1.4 while the change in area is 2.4 nm$^2$, 1.8 nm$^2$, 2.9 nm$^2$ for TRAAK, TREK-1 and TREK-2, respectively.
+
+Unitary conductances were found to be 73~pS~\cite{sorumTensionActivationMechanosensitive2024} and 65~pS at 100~mV~\cite{blinMixingMatchingTREK2016} for TRAAK; 48~pS at 50~mV~\cite{patelMammalianTwoPore1998} and 88~pS at 100~mV~\cite{blinMixingMatchingTREK2016} for TREK-1; and 40~pS at 100~mV~\cite{blinMixingMatchingTREK2016} for TREK-2.
+
+\cite{Expression}
+The K2P family channels are highly expressed in the brain, particularly in the hippocampus and cortex, and are found in both pyramidal cortical neurons and GABAergic interneurons \cite{djillaniRoleTREK1Health2019}. They are also strongly enriched at nodes of Ranvier, with densities approximately 3,000 times higher than in somatic regions \cite{kandaTREK1TRAAKAre2019}.

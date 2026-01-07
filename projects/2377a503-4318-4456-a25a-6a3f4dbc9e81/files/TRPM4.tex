@@ -1,0 +1,39 @@
+\subsection{TRPM4 (Ca$^{2+}$-Activated Nonselective Cation Channel)}
+
+TRPM4 is not directly mechanosensitive but is activated by elevations in
+intracellular Ca$^{2+}$ following Piezo and TRP channel opening
+\cite{launayTRPM4Ca2+ActivatedNonselective2002, guoStructuresCalciumactivatedNonselective2017}.
+
+\textbf{Activation mechanism and kinetics}
+TRPM4 activation depends on intracellular Ca$^{2+}$ concentration. Experimentally,
+normalized activation currents (I/I$_{\rm max}$) can be fitted with a Hill equation
+\cite{guoStructuresCalciumactivatedNonselective2017}:
+\[
+P_{\rm TRPM4} = \frac{[{\rm Ca}^{2+}]^n}{[{\rm Ca}^{2+}]^n + EC_{50}^n}
+\]
+where $n$ is the Hill coefficient (cooperativity), and EC$_{50}$ is the half-activation Ca$^{2+}$ concentration.  
+
+Based on previous patch-clamp studies:  
+\begin{itemize}
+  \item EC$_{50} \approx 0.3$--1~$\mu$M \cite{launayTRPM4Ca2+ActivatedNonselective2002}, consistent with physiological Ca$^{2+}$ elevations after Piezo/TRP activation.
+  \item Hill coefficient $n \approx 4 - 6$\cite{launayTRPM4Ca2+ActivatedNonselective2002}, indicating cooperative Ca$^{2+}$ binding.
+\end{itemize}
+
+TRPM4 activation occurs within $\sim 10$--$100$~ms after intracellular Ca$^{2+}$ rises, depending on diffusion and channel density. TRPM4 does not exhibit classical inactivation; the current decreases as intracellular Ca$^{2+}$ returns to baseline due to buffering and extrusion mechanisms. This avoids introducing additional gating variables since the activation is relatively fast (10–100 ms) and TRPM4 does not inactivate.
+
+\textbf{Physiological role}
+TRPM4 is a Ca$^{2+}$-activated, monovalent-selective cation channel that provides a depolarizing inward current without directly contributing to Ca$^{2+}$ influx. Although channel opening requires elevations in intracellular Ca$^{2+}$, TRPM4 is effectively impermeable to divalent cations, including Ca$^{2+}$, and conducts primarily monovalent ions, with Na$^+$ dominating the current under physiological conditions due to its large electrochemical driving force \cite{launayTRPM4Ca2+ActivatedNonselective2002}. As a result, TRPM4 acts as an electrical amplifier of upstream Ca$^{2+}$ signals, converting local Ca$^{2+}$ elevations—originating from mechanosensitive channels, voltage-gated Ca$^{2+}$ channels, or intracellular stores—into membrane depolarization. Structural studies confirm that the TRPM4 pore architecture excludes Ca$^{2+}$ permeation while supporting monovalent ion flow, consistent with its role as a Ca$^{2+}$-gated but Ca$^{2+}$-impermeable channel \cite{guoStructuresCalciumactivatedNonselective2017}. Functionally, TRPM4 contributes to action potential initiation and burst firing by prolonging depolarization and increasing neuronal excitability, while influencing intracellular Ca$^{2+}$ dynamics only indirectly through voltage-dependent mechanisms rather than direct Ca$^{2+}$ entry.
+
+\textbf{Modeling formulation}  
+In our Hodgkin--Huxley-type framework, the TRPM4 current is modeled as:
+\[
+I_{\mathrm{TRPM4}} = g_{\mathrm{TRPM4}} \, P_{\rm TRPM4} \, (V_m - E_{\mathrm{TRPM4}})
+\]
+with the Ca$^{2+}$-dependent open probability given as described before.
+
+\textbf{Parameter justification}
+In this model, the reversal potential of TRPM4 ($E_{\mathrm{TRPM4}}$) was set to $0$~mV, consistent with experimental measurements showing that TRPM4 is a Ca$^{2+}$-activated, monovalent non-selective cation channel with approximately equal permeability to Na$^+$ and K$^+$, but impermeable to Ca$^{2+}$ \cite{launayTRPM4Ca2+ActivatedNonselective2002}. As a consequence of its mixed Na$^+$/K$^+$ permeability, the opposing transmembrane gradients of these ions yield a reversal potential close to $0$~mV under physiological ionic conditions. Although TRPM4 is non-selective among monovalent cations, the inward current at resting membrane potentials is dominated by Na$^+$ influx due to its large electrochemical driving force.
+
+Unitary conductances were found to be 25~pS \cite{launayTRPM4Ca2+ActivatedNonselective2002}.
+
+Voltage dependence is negligible for TRPM4 under physiological conditions, so the model includes only Ca$^{2+}$-dependent gating. The fraction of Ca$^{2+}$-activated current is fully directed to Na$^+$ influx, consistent with literature reports \cite{guoStructuresCalciumactivatedNonselective2017}.

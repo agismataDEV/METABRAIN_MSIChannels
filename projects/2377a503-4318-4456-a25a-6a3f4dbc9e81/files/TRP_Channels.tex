@@ -1,0 +1,66 @@
+\subsection{TRP Channels (TRPC1, TRPP1, TRPP2)}
+
+Members of the TRP channel family participate in mechanosensitive processes, but for many mammalian TRP isoforms there is limited evidence that they are directly gated by bilayer tension; instead, activation mechanisms can involve tethering to structural proteins, cytoskeletal interactions, or downstream signaling pathways triggered by mechanical stimuli \cite{Christensen2007, nikolaevMammalianTRPIon2019}.
+TRPP2 (polycystin‑2) and TRPC1 are non‑selective Ca$^{2+}$‑permeable cation channels implicated in mechanosensitive pathways, but there is limited robust evidence that they act as primary force‑from‑lipid sensors comparable to PIEZO1/2. In many mechanotransduction contexts, TRP channels are proposed to function as mechano‑amplifiers or downstream effectors of primary mechanotransducers (e.g., PIEZO channels) rather than directly gated by membrane tension \cite{CoxPoole2004}.
+
+\textbf{Ions conducted}  
+These channels conduct mixed Na$^+$ and Ca$^{2+}$ currents; TRPP2 has measurable Ca$^{2+}$ permeability and TRPC1 contributes to Ca$^{2+}$ entry in native heteromers, but both show modest Ca$^{2+}$ fractions of total current under physiological ionic conditions \cite{pedersenTRPChannelsOverview2005, geesRoleTransientReceptor2010}.
+
+
+\textbf{Activation and inactivation mechanisms.}  
+TRPP2 (polycystin-2) exhibits direct cytosolic Ca$^{2+}$ regulation mediated by a C-terminal EF-hand domain. Single-channel recordings demonstrate that TRPP2 open probability increases as cytosolic free Ca$^{2+}$ rises from low micromolar to tens of micromolar concentrations, reaching maximal activity at submillimolar Ca$^{2+}$, while higher Ca$^{2+}$ concentrations inhibit channel activity, yielding a bell-shaped dependence of open probability on intracellular Ca$^{2+}$ \cite{koulenPolycystin2IntracellularCalcium2002}. The maximal absolute open probability of TRPP2 is low, on the order of 2--3\%, and is further modulated by membrane potential, with more negative potentials increasing channel availability \cite{koulenPolycystin2IntracellularCalcium2002}.
+
+In contrast, TRPC1 does not possess an intrinsic Ca$^{2+}$-activation gate. Its opening is mediated by receptor-operated and store-operated signaling pathways, while elevated intracellular Ca$^{2+}$ produces calmodulin-dependent feedback inhibition, reducing channel open probability as Ca$^{2+}$ accumulates \cite{singhCalmodulinRegulatesCa2+Dependent2002}. Thus, Ca$^{2+}$-dependent inactivation is included for TRPC1, whereas Ca$^{2+}$-dependent activation is not modeled explicitly.
+
+\textbf{Modeling formulation}  
+\[
+I_{\mathrm{TRP}} = g_{\mathrm{TRP}} \, a_{\mathrm{TRP}} \, h_{\mathrm{TRP}} \, (V_m - E_{\mathrm{TRP}})
+\]
+where $a_{\mathrm{TRP}}$ and $h_{\mathrm{TRP}}$ gate toward the bell‑shaped steady‑state probabilities, $V_m$ is membrane potential, and $E_{\mathrm{TRP}}$ is the mixed cation reversal potential. This description reproduces experimentally observed depolarizing TRP currents with positive reversal potentials and modest Ca$^{2+}$ influx characteristic of receptor‑operated and Ca$^{2+}$‑modulated TRP channel activity \cite{pedersenTRPChannelsOverview2005,geesRoleTransientReceptor2010}.
+
+TRPP2 open probability is modeled as a product of Ca$^{2+}$-dependent activation and inactivation terms, scaled by a voltage-dependent availability factor:
+
+\[
+a_{\mathrm{TRPP1/2}}^{\infty}([Ca]_i) =
+\frac{[Ca]_i^{n_a}}{K_a^{n_a}+[Ca]_i^{n_a}},
+\quad
+h_{\mathrm{TRPP1/2}}^{\infty}([Ca]_i) =
+\frac{K_i^{n_i}}{K_i^{n_i}+[Ca]_i^{n_i}},
+\]
+
+\[
+P_{\mathrm{open}}^{\mathrm{TRPP2}}(Ca_i,V_m)
+=
+P_{\max}
+\underbrace{a_{\mathrm{TRPP1/2}}^{\infty}([Ca]_i)}_{\text{activation}}
+\underbrace{h_{\mathrm{TRPP1/2}}^{\infty}([Ca]_i)}_{\text{inactivation}}
+f_V(V_m),
+\]
+with $P_{\max}=0.03$, activation half-max $K_a \sim 0.1$--$0.5~\mu$M, inactivation half-max $K_i \sim 1$--$1.5~\mu$M, and Hill coefficients $n_a,n_i \approx 1$--$2$, based on single-channel measurements \cite{koulenPolycystin2IntracellularCalcium2002}. Although TRPP2 gating is naturally regulated by local microdomain Ca$^{2+}$ near the channel, here bulk cytosolic Ca$^{2+}$ ($Ca_i$) is used for simplicity. The voltage-dependent factor $f_V(V_m)$ increases channel availability at negative membrane potentials and is normalized to unity near $-30$~mV.\cite{koulenPolycystin2IntracellularCalcium2002}
+
+For TRPC1-containing channels, Ca$^{2+}$-dependent inactivation is modeled phenomenologically as
+
+\[
+a_{\mathrm{TRPC1}}^{\infty} = P_\mathrm{max} \, P_0^{\mathrm{Piezo1}},
+\quad
+h_{\mathrm{TRPC1}}^{\infty}([Ca]_i) =
+h_{\mathrm{TRPP1/2}}^{\infty}([Ca]_i) ,
+\]
+with $P_{\max}=0.05$, $K_i \sim 0.3$--$1~\mu$M, reflecting calmodulin-mediated negative feedback \cite{singhCalmodulinRegulatesCa2+Dependent2002}.
+
+The activation and Ca$^{2+}$-dependent inactivation are modeled as:
+\[
+\frac{d a_{\mathrm{TRP}}}{dt} = \frac{a_{\mathrm{TRP}}^{\infty} - a_{\mathrm{TRP}}}{\tau_{a, \mathrm{TRP}}},
+\quad
+\frac{d h_{\mathrm{TRP}}}{dt} = \frac{h_{\mathrm{TRP}}^{\infty}(\mathrm{Ca}) - h_{\mathrm{TRP}}}{\tau_{h, \mathrm{TRP}}}
+\]
+with $\tau_{a, \mathrm{TRP}} = 20$ ms for activation and $\tau_{h, \mathrm{TRP}} = 100$ ms for Ca$^{2+}$-dependent inactivation.
+
+Single-channel recordings from heterologous expression systems have provided estimates of the unitary conductances of TRPP2 and TRPC1 channels. TRPP2 (polycystin-2) channels exhibit relatively large conductance when recorded either in isolation or in association with PKD1, with reported mean unitary conductances on the order of $\approx 140$--$170~\mathrm{pS}$ under symmetrical ionic conditions \cite{pedersenTRPChannelsOverview2005,baiFormationNewReceptoroperated2008}. In contrast, TRPC1 alone displays a much smaller unitary conductance of approximately $\approx 16$--$17~\mathrm{pS}$ \cite{pedersenTRPChannelsOverview2005,baiFormationNewReceptoroperated2008}, consistent with its role as a low-conductance pore-forming subunit that typically contributes to heteromeric TRPC channel complexes. When TRPP2 and TRPC1 are co-assembled, intermediate single-channel conductances near $\approx 40~\mathrm{pS}$ have been reported, indicating that TRPC1 can modulate pore properties and attenuate the high conductance characteristic of TRPP2 homomeric channels \cite{baiFormationNewReceptoroperated2008}. These measurements are consistent with broader surveys of TRP channel biophysics, which report a wide range of single-channel conductances (from $\approx 10~\mathrm{pS}$ to $>100~\mathrm{pS}$) across the TRP family, reflecting differences in pore architecture, subunit composition, and ion permeation properties \cite{geesRoleTransientReceptor2010}.
+
+Electrophysiological recordings of TRPP2 and TRPC1 channels indicate that both exhibit non‑selective cation I–V relationships with reversal potentials near the equilibrium for mixed monovalent cations, consistent with limited ionic selectivity. For TRPC1, slope conductance measurements in native and heterologous systems show an almost linear current–voltage relationship with an extrapolated reversal potential of approximately +30~mV under standard Na$^{+}$/K$^{+}$ ionic gradients \cite{skopinTRPC1ProteinForms2013}. For TRPP2, direct measurements of reversal potentials for homomeric channels are less frequently reported, but whole‑cell and single‑channel analyses typically display reversal near 0–+10~mV for mixed monovalent cation currents and modest outward rectification, reflecting non‑selective conductance of Na$^{+}$, K$^{+}$ and Ca$^{2+}$ \cite{pedersenTRPChannelsOverview2005,baiFormationNewReceptoroperated2008}. Co‑assembly of TRPP2 with TRPC1 has been shown to produce a positive shift in reversal potential of roughly +8~mV relative to channels expressed alone, indicating altered relative permeabilities in the heteromeric complex \cite{baiFormationNewReceptoroperated2008}. These I–V profiles are consistent with permeability ratios that do not strongly favor any single cation species and with modest contributions of Ca$^{2+}$ to the overall current.
+
+TRPP2 (polycystin-2) and TRPC1 are non-selective cation channels with limited Ca$^{2+}$ permeability, a common feature of TRP channels \cite{pedersenTRPChannelsOverview2005,geesRoleTransientReceptor2010}. For TRPP2, bi-ionic reversal-potential measurements indicate $P_{\mathrm{Ca}}/P_{\mathrm{Na}} \approx 1$--$3$, implying that Ca$^{2+}$ contributes only a small fraction of the total current ($\sim 1s-4\,\%$ under physiological conditions, $\sim$140~mM Na$^{+}$, $\sim$2~mM Ca$^{2+}$) \cite{storchTransientReceptorPotential2012}. In contrast, TRPC1 forms heteromeric channels with reduced Ca$^{2+}$ permeability compared with other TRPC isoforms \cite{storchTransientReceptorPotential2012}, yielding $P_{\mathrm{Ca}}/P_{\mathrm{Na}} < 1$ and an estimated Ca$^{2+}$ fraction of $<1-3\,\%$. These data indicate that TRPP2 and TRPC1 primarily mediate depolarizing Na$^{+}$ influx, with only modest accompanying Ca$^{2+}$ entry.
+
+\textbf{Expression}
+TRPC1 is the most widely distributed member of the TRPC subfamily in the mammalian brain and is particularly abundant in cortical pyramidal neurons, where it localizes to somata and apical dendrites, with additional expression reported in subsets of GABAergic interneurons but little to no expression in glial cells (von Bohlen und Halbach et al., 2018; Riccio et al., 2002). In contrast, TRPP family members (TRPP1/PKD1 and TRPP2/PKD2) show lower and more heterogeneous neuronal expression. Transcriptomic and immunohistochemical studies indicate that TRPP2 is present in both neurons and glia, with evidence for neuronal expression in cortical and hippocampal populations, although its functional contribution at the plasma membrane of pyramidal neurons or interneurons remains less well characterized compared to TRPC1 (González-Perrett et al., 2001; Wu et al., 2021). TRPP1 is primarily known for its role as a regulatory subunit forming complexes with TRPP2, and neuronal expression has been reported, but with limited cell-type specificity and sparse electrophysiological characterization in cortical circuits.

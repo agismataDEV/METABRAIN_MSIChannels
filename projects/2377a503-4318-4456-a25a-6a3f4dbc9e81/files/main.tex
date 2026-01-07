@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+
+\usepackage{amsmath,amssymb}
+\usepackage{lipsum} % For dummy text
+\usepackage[a4paper,margin=2.54cm]{geometry}  % No margins
+\usepackage{graphicx}
+\usepackage[absolute,overlay]{textpos}     % For absolute positioning
+
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{geometry}
+
+\renewcommand{\arraystretch}{1.5} % increase row height
+
+% HIGHLIGH PACKAGES
+\usepackage{soul}
+\sethlcolor{yellow}
+\usepackage{etoolbox}
+\robustify\cite
+\setlength{\parindent}{0pt}   % No indentation
+\setlength{\parskip}{1em}     % Space between paragraphs (~one line)
+
+% \usepackage[backend=biber,style=ieee]{biblatex} % or any style you like
+% \addbibresource{Ultrasound_Neuromodulation.bib}
+
+\usepackage[numbers]{natbib}
+\bibliographystyle{ieeetr}
+
+\title{Ultrasound-Induced Activation of Mechanosensitive Ion Channels via Membrane Deformation}
+
+\begin{document}
+\maketitle
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+Low-intensity ultrasound (US) has emerged as a powerful modality for noninvasive neuromodulation and cellular stimulation. A growing body of experimental and theoretical work supports the hypothesis that US acts primarily through mechanical interactions with the cell membrane rather than direct thermal or electrical effects .
+
+Acoustic radiation force, oscillatory pressure fields, and acoustic streaming induce membrane displacement, strain, and tension. These mechanical perturbations activate mechanosensitive ion channels (MSCs), which transduce membrane deformation into ionic currents. This conversion from mechanical to electrical energy constitutes the primary biophysical mechanism underlying ultrasound neuromodulation in neurons and other excitable cells.
+
+At the molecular level, mechanosensitive channels respond either directly to bilayer tension (``force-from-lipid'' mechanism) or indirectly via cytoskeletal tethers and Ca$^{2+}$-dependent signaling pathways \cite{wuTouchTensionTransduction2017}. The present model integrates nonlinear membrane mechanics with ion channel dynamics to capture both direct and indirect mechanotransduction pathways.
+% ============================================================
+\section{Mechanosensitive Channel Families Considered}
+% ============================================================
+\subsection{Mechanosensitive Channel Open Probability}
+Mechanosensitive channel opening probability is computed using an area-expansion
+Boltzmann formulation:
+\[
+P_0(t) =
+\frac{1}{1 + \exp\left[(T_{1/2} - T)\frac{A_{\mathrm{gate}}}{k_B T}\right]}
+\left(1 - e^{-T/T_{\mathrm{inact}}}\right)
+\label{eq:MSC_Prob}
+\]
+
+\input{K2P_channels}
+\input{Piezo_Channels}
+\input{TRP_Channels}
+\input{TRPM4}
+\input{T_Type_Ca2+}
+\input{Ca2_dependent_K_Channels}
+\input{Ca_Dynamics_Equation}
+\input{Table_Expression}
+
+% ============================================================
+\section{Conclusion}
+% ============================================================
+
+This model integrates nonlinear membrane mechanics with a biophysically grounded electrophysiological framework to describe ultrasound-induced mechanotransduction. Primary force-from-lipid sensors (K2P and Piezo) initiate the response, while secondary Ca$^{2+}$-dependent channels (TRP, TRPM4, T-type Ca$^{2+}$) amplify and shape membrane depolarization. Ca$^{2+}$-activated K$^+$ channels ensure recovery of the resting membrane potential.
+
+The modeling assumptions and parameter choices are directly supported by experimental literature and provide a transparent framework for interpreting ultrasound neuromodulation experiments.
+
+\bibliography{Ultrasound_Neuromodulation}
+% \printbibliography
+\end{document}
